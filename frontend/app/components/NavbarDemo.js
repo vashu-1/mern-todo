@@ -38,7 +38,7 @@ export function NavbarDemo() {
     e?.preventDefault();
     try {
       const res = await axios.post(
-        'http://localhost:5000/api/user/logout',
+        'https://mern-todo-1-krwi.onrender.com/api/user/logout',
         {},
         {
           headers: {

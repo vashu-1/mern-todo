@@ -30,7 +30,7 @@ const SignUpPage = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/user/register',
+        'https://mern-todo-1-krwi.onrender.com/api/user/register',
         formData,
         {
           headers: {

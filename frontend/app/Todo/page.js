@@ -48,7 +48,7 @@ export default function TodoPage() {
       }
 
       const res = await axios.post(
-        `http://localhost:5000/api/list/create/${userid}`,
+        `https://mern-todo-1-krwi.onrender.com/api/list/create/${userid}`,
         data,
         {
           headers: { 'Content-Type': 'application/json' },
@@ -95,7 +95,7 @@ export default function TodoPage() {
     }
     try {
       const res = await axios.delete(
-        `http://localhost:5000/api/list/delete/${listid}`,
+        `https://mern-todo-1-krwi.onrender.com/api/list/delete/${listid}`,
         {
           headers: { 'Content-Type': 'application/json' },
           withCredentials: true,
@@ -130,7 +130,7 @@ export default function TodoPage() {
     }
     try {
       const res = await axios.put(
-        `http://localhost:5000/api/list/update/${listid}`,
+        `https://mern-todo-1-krwi.onrender.com/api/list/update/${listid}`,
         { title: newTitle, body: newBody },
         {
           headers: { 'Content-Type': 'application/json' },
@@ -166,7 +166,7 @@ export default function TodoPage() {
     const fetchtodo = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/list/getlists/${userid}`,
+          `https://mern-todo-1-krwi.onrender.com/api/list/getlists/${userid}`,
           {
             headers: { 'Content-Type': 'application/json' },
             withCredentials: true,

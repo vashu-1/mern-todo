@@ -26,7 +26,7 @@ export default function LoginPage() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/user/login',
+        'https://mern-todo-1-krwi.onrender.com/api/user/login',
         formData,
         {
           headers: {
