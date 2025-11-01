@@ -17,6 +17,9 @@ const nextConfig = {
     ],
   },
 
+  // Empty turbopack config to silence warning (using webpack instead)
+  turbopack: {},
+
   // Webpack optimizations for faster builds
   webpack: (config, { dev, isServer }) => {
     if (dev && !isServer) {
