@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
+import NavLink from '../components/NavLink';
 
 export default function AboutPage() {
   return (
@@ -16,12 +16,12 @@ export default function AboutPage() {
             </p>
           </div>
           <div>
-            <Link
+            <NavLink
               href="/"
               className="rounded-lg bg-white/10 px-4 py-2 text-white hover:bg-white/20 transition"
             >
               Back to Home
-            </Link>
+            </NavLink>
           </div>
         </div>
 
@@ -73,12 +73,12 @@ export default function AboutPage() {
             >
               Email us
             </a>
-            <Link
+            <NavLink
               href="/"
               className="inline-block rounded-lg bg-white/6 px-5 py-3 text-white border border-white/10 hover:bg-white/10 transition"
             >
               Explore the app
-            </Link>
+            </NavLink>
           </div>
         </section>
 

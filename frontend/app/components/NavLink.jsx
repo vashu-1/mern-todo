@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import React from "react";
-import { useLoader } from "../providers/LoaderProvider";
+import Link from 'next/link';
+import React from 'react';
+import { useLoader } from '../providers/LoaderProvider';
 
 export default function NavLink({ href, children, className, ...props }) {
   const { show } = useLoader();

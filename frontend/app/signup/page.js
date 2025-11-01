@@ -1,15 +1,17 @@
 'use client';
 import React, { useState } from 'react';
-import Link from 'next/link';
+import NavLink from '../components/NavLink';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
+import { useLoader } from '../providers/LoaderProvider';
 
 import { signup } from '../store/userslice.js';
 
 const SignUpPage = () => {
   const dispatch = useDispatch();
+  const { show: showLoader } = useLoader();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -53,6 +55,7 @@ const SignUpPage = () => {
           })
         );
 
+        showLoader();
         setTimeout(() => router.push('/login'), toastDuration);
       } else {
         toast.error(response.data.message || 'Registration failed', {
@@ -161,12 +164,12 @@ const SignUpPage = () => {
 
         <p className="mt-6 text-center text-sm text-gray-300">
           Already have an account?{' '}
-          <Link
+          <NavLink
             href="/login"
             className="font-semibold text-purple-400 hover:text-purple-300"
           >
             Login
-          </Link>
+          </NavLink>
         </p>
       </div>
     </div>

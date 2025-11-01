@@ -13,6 +13,7 @@ import { createlist } from '../store/listslice';
 import { selectUser } from '../store/userslice';
 import { selectlists } from '../store/listslice';
 import { IoArrowBackSharp } from 'react-icons/io5';
+import { useLoader } from '../providers/LoaderProvider';
 
 export default function TodoPage() {
   const [data, setData] = useState({ title: '', body: '' });
@@ -23,8 +24,10 @@ export default function TodoPage() {
   const user = useSelector(selectUser);
   const lists = useSelector(selectlists);
   const router = useRouter();
+  const { show: showLoader } = useLoader();
 
   const redirecttohome = () => {
+    showLoader();
     router.push('/');
   };
 
@@ -200,7 +203,10 @@ export default function TodoPage() {
             </div>
             <div className="flex gap-5">
               <button
-                onClick={() => router.push('/login')}
+                onClick={() => {
+                  showLoader();
+                  router.push('/login');
+                }}
                 className="flex items-center gap-2 rounded-lg bg-blue-600/20 border border-blue-500/50 px-4 py-2 text-blue-300 hover:bg-blue-600/30 transition duration-200"
               >
                 <IconLogout size={20} />

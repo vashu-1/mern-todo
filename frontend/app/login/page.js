@@ -1,15 +1,17 @@
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
+import NavLink from '../components/NavLink';
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { login } from '../store/userslice.js';
+import { useLoader } from '../providers/LoaderProvider';
 
 export default function LoginPage() {
   const dispatch = useDispatch();
   const router = useRouter();
+  const { show: showLoader } = useLoader();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -49,6 +51,7 @@ export default function LoginPage() {
           })
         );
 
+        showLoader();
         setTimeout(() => router.push('/Todo'), duration);
       } else {
         toast.error(
@@ -68,7 +71,10 @@ export default function LoginPage() {
         <div className="mb-4 text-center">
           <button
             type="button"
-            onClick={() => router.push('/')}
+            onClick={() => {
+              showLoader();
+              router.push('/');
+            }}
             className="inline-flex items-center gap-2 text-md font-semibold px-6 py-3 rounded-md bg-white hover:-translate-y-1.5 text-black transition duration-150"
           >
             Home
@@ -147,12 +153,12 @@ export default function LoginPage() {
           <div className="mt-6 text-center">
             <p className="text-gray-300">
               Don't have an account?{' '}
-              <Link
+              <NavLink
                 href="/signup"
                 className="text-purple-300 hover:text-purple-200 font-semibold transition duration-200"
               >
                 Sign up
-              </Link>
+              </NavLink>
             </p>
           </div>
         </div>
