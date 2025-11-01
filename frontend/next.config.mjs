@@ -2,10 +2,6 @@
 const nextConfig = {
   /* config options here */
   reactStrictMode: true,
-  
-  // Enable static export for deployment
-  output: 'export',
-  distDir: 'dist',
 
   // Performance optimizations
   compiler: {
