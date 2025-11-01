@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { NavbarDemo } from '../components/NavbarDemo.js';
-import NavLink from '../components/NavLink';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 export default function Index() {
@@ -65,18 +65,18 @@ export default function Index() {
               transition={{ delay: 0.5, duration: 0.8 }}
               className="flex flex-col items-center justify-center gap-4 sm:flex-row"
             >
-              <NavLink
+              <Link
                 href="/signup"
                 className="w-full sm:w-auto rounded-lg bg-linear-to-r from-purple-600 to-violet-600 px-8 py-4 text-center text-lg font-semibold text-white shadow-lg hover:from-purple-700 hover:to-violet-700 transition duration-300 transform hover:scale-105"
               >
                 Get Started Free
-              </NavLink>
-              <NavLink
+              </Link>
+              <Link
                 href="/Todo"
                 className="w-full sm:w-auto rounded-lg bg-white/10 border border-white/20 backdrop-blur-sm px-8 py-4 text-center text-lg font-semibold text-white hover:bg-white/20 transition duration-300"
               >
                 Todo
-              </NavLink>
+              </Link>
             </motion.div>
           </motion.div>
         </div>
@@ -312,12 +312,12 @@ export default function Index() {
               Join thousands of users who have already transformed the way they
               manage tasks.
             </p>
-            <NavLink
+            <Link
               href="/signup"
               className="inline-block rounded-lg bg-linear-to-r from-purple-600 to-violet-600 px-8 py-4 text-lg font-semibold text-white shadow-lg hover:from-purple-700 hover:to-violet-700 transition duration-300 transform hover:scale-105"
             >
               Start For Free
-            </NavLink>
+            </Link>
           </div>
         </motion.div>
       </section>

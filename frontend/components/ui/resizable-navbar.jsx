@@ -8,7 +8,6 @@ import {
   useMotionValueEvent,
 } from 'framer-motion';
 import Link from 'next/link';
-import NavLink from '../../app/components/NavLink';
 
 import React, { useRef, useState } from 'react';
 
@@ -217,15 +216,15 @@ export const NavbarButton = ({
 
   // If 'to' prop is provided, use Next.js Link
   if (to) {
-    // Use NavLink so clicking a navigation link shows the global loader
+    // Use Next.js Link for navigation
     return (
-      <NavLink
+      <Link
         href={to}
         className={cn(baseStyles, variantStyles[variant], className)}
         {...props}
       >
         {children}
-      </NavLink>
+      </Link>
     );
   }
 
