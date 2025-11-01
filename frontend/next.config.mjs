@@ -2,7 +2,6 @@
 const nextConfig = {
   /* config options here */
   reactStrictMode: true,
-  swcMinify: true,
   // Ensure proper handling of environment variables
   env: {
     NEXT_PUBLIC_API_URL:
@@ -11,11 +10,14 @@ const nextConfig = {
   },
   // Add image optimization config for deployment
   images: {
-    domains: ['assets.aceternity.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'assets.aceternity.com',
+      },
+    ],
     unoptimized: true,
   },
-  // Ensure proper output for deployment
-  output: 'standalone',
 };
 
 export default nextConfig;
