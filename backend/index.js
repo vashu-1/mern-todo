@@ -12,7 +12,7 @@ connectDB();
 
 app.use(
   cors({
-    origin: 'https://mern-todo-org.onrender.com',
+    origin: 'https://mern-todo-lovat-tau.vercel.app/',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
