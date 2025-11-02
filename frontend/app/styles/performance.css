@@ -1,0 +1,251 @@
+/* Performance Optimizations to Prevent Forced Reflows */
+
+/* 
+ * Use contain property to isolate repaints and reflows
+ * This tells the browser that an element's subtree is independent
+ */
+.performance-optimized {
+  contain: layout style paint;
+}
+
+/* 
+ * GPU acceleration hints for animated elements
+ * Forces elements onto their own layer to prevent reflows
+ */
+.gpu-accelerated {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* 
+ * Optimize animations to use only transform and opacity
+ * These properties don't trigger layout recalculation
+ */
+.animate-optimized {
+  will-change: transform, opacity;
+  /* Remove will-change after animation completes */
+  animation: removeWillChange 0.3s forwards;
+}
+
+@keyframes removeWillChange {
+  to {
+    will-change: auto;
+  }
+}
+
+/* 
+ * Prevent layout thrashing on hover effects
+ * Use transform instead of margin/padding
+ */
+.hover-optimized {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.hover-optimized:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* 
+ * Optimize scroll performance with CSS containment
+ */
+.scroll-container {
+  contain: layout style paint;
+  overflow-y: auto;
+  /* Enable hardware acceleration for scrolling */
+  -webkit-overflow-scrolling: touch;
+  will-change: scroll-position;
+}
+
+/* 
+ * Prevent reflows during card animations
+ */
+.card-optimized {
+  contain: layout;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* 
+ * Optimize images to prevent reflows during loading
+ */
+.img-optimized {
+  /* Prevent layout shift when image loads */
+  aspect-ratio: attr(width) / attr(height);
+  contain: layout;
+}
+
+/* 
+ * Batch animations using CSS custom properties
+ * Reduces JavaScript-triggered reflows
+ */
+.stagger-animation {
+  animation-delay: calc(var(--stagger-index, 0) * 0.1s);
+}
+
+/* 
+ * Optimize list rendering to prevent reflows
+ */
+.list-optimized {
+  contain: layout;
+}
+
+.list-optimized > * {
+  contain: layout style;
+}
+
+/* 
+ * Reduce paint area with CSS containment
+ */
+.paint-optimized {
+  contain: paint;
+  isolation: isolate;
+}
+
+/* 
+ * Optimize modal/overlay rendering
+ */
+.modal-optimized {
+  contain: layout style paint;
+  /* Use fixed positioning to avoid reflow on scroll */
+  position: fixed;
+  will-change: opacity;
+}
+
+/* 
+ * Prevent font rendering from causing reflows
+ */
+.text-optimized {
+  font-display: swap;
+  text-rendering: optimizeSpeed;
+}
+
+/* 
+ * Optimize backdrop blur to reduce reflows
+ */
+.backdrop-optimized {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  /* Hint to use GPU */
+  transform: translateZ(0);
+}
+
+/* 
+ * Grid/Flex optimizations to prevent layout thrashing
+ */
+.grid-optimized {
+  display: grid;
+  /* Explicit grid reduces calculation time */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  contain: layout;
+}
+
+.flex-optimized {
+  display: flex;
+  contain: layout;
+}
+
+/* 
+ * Optimize transition performance
+ * Only transition transform and opacity
+ */
+.transition-optimized {
+  transition-property: transform, opacity;
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition-duration: 0.3s;
+}
+
+/* 
+ * Prevent reflows during smooth scrolling
+ */
+.smooth-scroll-optimized {
+  scroll-behavior: smooth;
+  /* Use CSS scroll snap to reduce JavaScript calculations */
+  scroll-snap-type: y mandatory;
+  overscroll-behavior: contain;
+}
+
+/* 
+ * Optimize form inputs to prevent reflows on focus
+ */
+.input-optimized {
+  contain: layout style;
+  will-change: border-color, box-shadow;
+}
+
+.input-optimized:focus {
+  /* Use box-shadow instead of border to prevent reflow */
+  outline: none;
+  box-shadow: 0 0 0 2px var(--focus-color, #8b5cf6);
+}
+
+/* 
+ * Reduce repaints with proper layer management
+ */
+.layer-optimized {
+  isolation: isolate;
+  transform: translateZ(0);
+}
+
+/* 
+ * Optimize button hover effects
+ */
+.button-optimized {
+  position: relative;
+  overflow: hidden;
+  contain: layout paint;
+  will-change: transform, box-shadow;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.button-optimized:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* 
+ * Optimize loading states
+ */
+.skeleton-optimized {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.1) 25%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.1) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+  contain: paint;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* 
+ * Prevent layout shift during content loading
+ */
+.content-placeholder {
+  min-height: 100vh;
+  contain: size layout;
+}
+
+/* 
+ * Optimize navigation bar to prevent reflows on scroll
+ */
+.navbar-optimized {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  contain: layout style paint;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
