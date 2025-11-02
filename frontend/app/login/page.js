@@ -69,7 +69,6 @@ export default function LoginPage() {
           <button
             type="button"
             onClick={() => {
-              showLoader();
               router.push('/');
             }}
             className="inline-flex items-center gap-2 text-md font-semibold px-6 py-3 rounded-md bg-white hover:-translate-y-1.5 text-black transition duration-150"

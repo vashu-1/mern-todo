@@ -83,7 +83,7 @@ export default function AboutPage() {
         </section>
 
         <footer className="mt-12 text-center text-sm text-gray-400">
-          <p>© {new Date().getFullYear()} ModarTodo. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} ModakTodo. All rights reserved.</p>
         </footer>
       </div>
     </div>
