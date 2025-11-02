@@ -18,6 +18,45 @@ const nextConfig = {
     optimisticClientCache: true,
   },
 
+  // Compression and optimization
+  compress: true, // Enable gzip compression
+  
+  // Output configuration for better caching
+  generateEtags: true,
+  
+  // HTTP headers for performance
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'X-DNS-Prefetch-Control',
+            value: 'on'
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'SAMEORIGIN'
+          },
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff'
+          },
+        ],
+      },
+      {
+        // Cache static assets aggressively
+        source: '/static/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+    ];
+  },
+
   // Add image optimization config for deployment
   images: {
     remotePatterns: [
@@ -27,6 +66,7 @@ const nextConfig = {
       },
     ],
     unoptimized: true,
+    formats: ['image/avif', 'image/webp'], // Use modern formats
   },
 
   // Webpack optimizations to reduce reflows
@@ -56,6 +96,9 @@ const nextConfig = {
 
   // Reduce chunk size to improve initial load
   productionBrowserSourceMaps: false,
+  
+  // Optimize output
+  poweredByHeader: false, // Remove X-Powered-By header
 };
 
 export default nextConfig;
