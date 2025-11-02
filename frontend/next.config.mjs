@@ -81,24 +81,17 @@ const nextConfig = {
       };
     }
 
-    // Optimize module resolution
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      // Ensure framer-motion uses optimized builds
-      'framer-motion': 'framer-motion/dist/es',
-    };
-
     return config;
   },
-
-  // Enable SWC minification for better performance
-  swcMinify: true,
 
   // Reduce chunk size to improve initial load
   productionBrowserSourceMaps: false,
   
   // Optimize output
   poweredByHeader: false, // Remove X-Powered-By header
+  
+  // Empty turbopack config to silence warning (using webpack)
+  turbopack: {},
 };
 
 export default nextConfig;
